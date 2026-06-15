@@ -1,7 +1,9 @@
 package cz.vsb.austra.connector;
 
 import cz.vsb.austra.dto.WeatherApiDto;
+import jakarta.validation.Valid;
 import org.jspecify.annotations.Nullable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +17,8 @@ public class WeatherConnector {
     //https://api.weatherapi.com/v1/current.json?key=2f3d5a0c8d0a4dd7986132149232003&q=Ostrava
 
     String baseURl = "https://api.weatherapi.com/v1/current.json?key=";
-    String ApiKey = "2f3d5a0c8d0a4dd7986132149232003";
+    @Value("${weatherapi.key}")
+    String ApiKey;
     String urlParams = "&q=";
 
     public @Nullable WeatherApiDto getWeatherForCity(String city){
